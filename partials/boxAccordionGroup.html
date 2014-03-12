@@ -1,0 +1,11 @@
+<div class="box-accordion-group">
+    <div class="box-accordion-head" ng-click="isOpen = !isOpen">
+        <span class="box-accordion-title" accordion-transclude="heading">{{ heading }}</span>
+    </div>
+    <span class="box-accordion-close"></span>
+    <div class="box-accordion-triangle" ng-show="isOpen"></div>
+    <div class="box-accordion-body" ng-style="bodyStyle" ng-show="isOpen">
+        <div class="box-accordion-body-inner" ng-transclude>
+        </div>
+    </div>
+</div>

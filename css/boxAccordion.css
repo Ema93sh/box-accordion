@@ -1,0 +1,43 @@
+.box-accordion {
+    width: 100%;
+}
+
+.box-accordion-group {
+    display: inline-block;
+    margin: 5px;
+     -webkit-transition:height 0.5s ease;
+    transition:height 0.5s ease;
+}
+
+.box-accordion-head {
+    width: 250px;
+    height: 250px;
+    background-color: green;
+    display: inline-block;
+    font-family: 'Gafata', sans-serif;
+}
+
+.box-accordion-body {
+    position: absolute;
+    background: #ddd;
+    top: auto;
+    left: 0;
+    width: 100%;
+    text-align: left;
+    height: 0px;
+    overflow: hidden;
+}
+
+.box-accordion-body-inner {
+    padding: 50px 30px;
+    height: 100%;
+}
+
+.box-accordion-triangle {
+    width: 0;
+	height: 0;
+	border-left: 18px solid transparent;
+	border-right: 18px solid transparent;
+	border-bottom: 20px solid #ddd;
+    margin-left: 110px;
+}
