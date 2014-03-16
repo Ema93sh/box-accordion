@@ -1,31 +1,20 @@
 /*global angular*/
 'use strict';
 
-angular.module('ui.boxaccordion', ['ngAnimate'])
+angular.module('ui.boxaccordion', [])
     .controller('BoxAccordionController', ['$scope', function ($scope) {
-        this.groups = [];
+        $scope.groups = [];
 
         this.closeOthers = function (openGroup) {
-            angular.forEach(this.groups, function (group) {
+            angular.forEach($scope.groups, function (group) {
                 if (group !== openGroup) {
-                    group.isOpen = false;
+                    group.close();
                 }
             });
         };
-    
-        this.addGroup = function (group) {
-            var that = this;
-            this.groups.push(group);
-            group.$on('$destroy', function (event) {
-                that.removeGroup(group);
-            });
-        };
-        
-        this.removeGroup = function (group) {
-            var index = this.groups.indexOf(group);
-            if (index !== -1) {
-                this.groups.splice(this.groups.indexOf(group), 1);
-            }
+
+        this.addGroup = function (groupScope) {
+            $scope.groups.push(groupScope);
         };
     }])
 
@@ -33,67 +22,96 @@ angular.module('ui.boxaccordion', ['ngAnimate'])
         return {
             restrict: 'E',
             transclude: true,
+            replace: true,
             controller: 'BoxAccordionController',
-            templateUrl: 'partials/boxAccordion.html'
+            templateUrl: 'partials/boxAccordion.html',
         };
     })
 
-    .directive('boxAccordionGroup', function ($animate) {
+    .controller('BoxAccordionGroupController', ['$scope', function ($scope) {
+        $scope.header = null;
+        $scope.body = null;
+
+        this.setHeader = function (headerScope) {
+            $scope.header = headerScope;
+        };
+
+        this.setBody = function (bodyScope) {
+            $scope.body = bodyScope;
+        };
+
+        $scope.close = function () {
+            $scope.body.isOpen = false;
+            $scope.isOpen = false;
+        };
+
+        $scope.open = function () {
+            $scope.body.isOpen = true;
+            $scope.isOpen = true;
+        };
+
+        this.toggle = function () {
+            if ($scope.isOpen) {
+                $scope.close();
+            } else {
+                $scope.open();
+            }
+        };
+
+    }])
+
+    .directive('boxAccordionGroup', function () {
         return {
             restrict: 'E',
             require: '^boxAccordion',
-            transclude: true,
             replace: true,
-            scope: { heading: '@' },
-            controller: function () {
-                this.setHeading = function (newHeading) {
-                    this.heading = newHeading;
-                };
-                this.bodyStyle = {};
-            },
             templateUrl: 'partials/boxAccordionGroup.html',
+            transclude: true,
+            scope: true,
+            controller: 'BoxAccordionGroupController',
             link: function (scope, element, attrs, accordionCtrl) {
-                accordionCtrl.addGroup(scope);
                 scope.isOpen = false;
+                accordionCtrl.addGroup(scope);
                 scope.$watch('isOpen', function (value) {
                     if (value) {
                         accordionCtrl.closeOthers(scope);
-                        element.css("height", "775px");
-                        scope.bodyStyle = {'height' : '500px'};
+                        element.css('height', '770px');
+                        $("body").animate({scrollTop: element[0].offsetTop}, "slow");
                     } else {
-                        element.css("height", "250px");
-                        scope.bodyStyle = {};
+                        element.css('height', '250px');
                     }
                 });
             }
         };
     })
-    
+
     .directive('boxAccordionHead', function () {
         return {
             restrict: 'AE',
             require: '^boxAccordionGroup',
-            replace: true,
-            template: '',
+            templateUrl: 'partials/boxAccordionHead.html',
             transclude: true,
-            compile: function (element, attr, transclude) {
-                return function link(scope, element, attr, accordionGroupCtrl) {
-                    accordionGroupCtrl.setHeading(transclude(scope, function () {}));
+            replace: true,
+            link: function (scope, element, attrs, accordionGroupCtrl) {
+                accordionGroupCtrl.setHeader(scope);
+                scope.toggle = function () {
+                    accordionGroupCtrl.toggle();
                 };
-            }
+                attrs.$observe('color', function (value) {
+                    element.css('background-color', value);
+                });
+            },
         };
     })
 
-    .directive('accordionTransclude', function () {
+    .directive('boxAccordionBody', function () {
         return {
+            restrict: 'AE',
             require: '^boxAccordionGroup',
-            link: function (scope, element, attr, controller) {
-                scope.$watch(function () { return controller[attr.accordionTransclude]; }, function (heading) {
-                    if (heading) {
-                        element.html('');
-                        element.append(heading);
-                    }
-                });
+            templateUrl: 'partials/boxAccordionBody.html',
+            transclude: true,
+            link: function (scope, element, attrs, accordionGroupCtrl) {
+                accordionGroupCtrl.setBody(scope);
             }
         };
     });

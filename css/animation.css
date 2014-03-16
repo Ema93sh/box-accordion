@@ -10,13 +10,6 @@
   opacity:0;
 }
 
-.box-accordion-triangle.ng-hide-add,
-.box-accordion-triangle.ng-hide-remove {
-   -webkit-transition:0.1s linear all;
-  transition:0.1s linear all;
-  display:block!important;
-  opacity:1;
-}
 
 .box-accordion-body.ng-hide {
   opacity:0;
