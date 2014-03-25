@@ -1,5 +1,7 @@
 <div>
 <div class="box-accordion-triangle" ng-show="isOpen"></div>
-<div class="box-accordion-body" ng-show="isOpen" ng-transclude>
+<div class="box-accordion-body" ng-show="isOpen">
+	<div class="close" ng-click="toggle()"></div>
+	<div class="box-accordion-body-inner" ng-transclude></div>
 </div>
 </div>

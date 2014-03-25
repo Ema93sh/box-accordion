@@ -111,6 +111,9 @@ angular.module('ui.boxaccordion', [])
             templateUrl: 'partials/boxAccordionBody.html',
             transclude: true,
             link: function (scope, element, attrs, accordionGroupCtrl) {
+                scope.toggle = function () {
+                    accordionGroupCtrl.toggle();
+                };
                 accordionGroupCtrl.setBody(scope);
             }
         };

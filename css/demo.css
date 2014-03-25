@@ -1,0 +1,21 @@
+.title {
+	text-align: center;
+	font-size: 1.7em;
+	font-family: 'Open Sans', sans-serif;
+	color: #000;
+	font-weight: 100;
+	display: block;
+}
+
+.accordion-container {
+	margin: 20px;
+}
+.demo-body h3{
+	font-family: 'Open Sans', sans-serif;
+	font-size: 2em;
+	color: #000;
+}
+
+body {
+	background-color: #F3F2F2;
+}
