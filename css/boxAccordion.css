@@ -47,13 +47,11 @@
 }
 
 .box-accordion-triangle {
-    width: 0;
-    height: 0;
-    border-left: 18px solid transparent;
-    border-right: 18px solid transparent;
-    border-bottom: 20px solid #FFFFFF;
+    width: 36px;
+    height: 20px;
     margin: auto;
     position:relative;
+    background-image: url('../images/triangle.png');
     z-index:1000
 }
 
