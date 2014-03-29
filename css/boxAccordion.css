@@ -51,6 +51,7 @@
 	border-right: 18px solid transparent;
 	border-bottom: 20px solid #FFFFFF;
     margin-left: 110px;
+    background-image:url('../images/triangle.png');
 }
 
 .box-accordion-body.close {
