@@ -1,7 +1,7 @@
 {
   "name": "mg-accordion",
   "version": "0.0.0",
-  "homepage": "https://github.com/Ema93sh/boxaccordion",
+  "homepage": "https://github.com/Ema93sh/box-accordion",
   "authors": [
     "Ema93sh <m.magesh.66@gmail.com>"
   ],
@@ -13,7 +13,6 @@
     "boxaccordion"
   ],
   "license": "MIT",
-  "private": true,
   "ignore": [
     "node_modules",
     "bower_components",
