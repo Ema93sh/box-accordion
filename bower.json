@@ -1,0 +1,33 @@
+{
+  "name": "mg-accordion",
+  "version": "0.0.0",
+  "homepage": "https://github.com/Ema93sh/boxaccordion",
+  "authors": [
+    "Ema93sh <m.magesh.66@gmail.com>"
+  ],
+  "description": "Accordion in angularjs",
+  "main": "build/boxAccordion.js",
+  "keywords": [
+    "angularjs",
+    "accordion",
+    "boxaccordion"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "node_modules",
+    "bower_components",
+    "test",
+    ".gitignore",
+    ".travis.yml",
+    "index.html",
+    "package.json"
+  ],
+  "dependencies": {
+    "angularjs": "*",
+    "angular-animate": "~1.2.14"
+  },
+  "devDependencies": {
+    "angular-mocks": "~1.2.16"
+  }
+}

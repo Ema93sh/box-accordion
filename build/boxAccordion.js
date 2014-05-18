@@ -24,7 +24,7 @@ angular.module('ui.boxaccordion', [])
             transclude: true,
             replace: true,
             controller: 'BoxAccordionController',
-            templateUrl: 'partials/boxAccordion.html',
+            templateUrl: 'boxAccordion.html',
         };
     })
 
@@ -65,7 +65,7 @@ angular.module('ui.boxaccordion', [])
             restrict: 'E',
             require: '^boxAccordion',
             replace: true,
-            templateUrl: 'partials/boxAccordionGroup.html',
+            templateUrl: 'boxAccordionGroup.html',
             transclude: true,
             scope: true,
             controller: 'BoxAccordionGroupController',
@@ -89,7 +89,7 @@ angular.module('ui.boxaccordion', [])
         return {
             restrict: 'AE',
             require: '^boxAccordionGroup',
-            templateUrl: 'partials/boxAccordionHead.html',
+            templateUrl: 'boxAccordionHead.html',
             transclude: true,
             replace: true,
             link: function (scope, element, attrs, accordionGroupCtrl) {
@@ -108,7 +108,7 @@ angular.module('ui.boxaccordion', [])
         return {
             restrict: 'AE',
             require: '^boxAccordionGroup',
-            templateUrl: 'partials/boxAccordionBody.html',
+            templateUrl: 'boxAccordionBody.html',
             transclude: true,
             link: function (scope, element, attrs, accordionGroupCtrl) {
                 scope.toggle = function () {
@@ -118,3 +118,35 @@ angular.module('ui.boxaccordion', [])
             }
         };
     });
+angular.module('ui.boxaccordion').run(['$templateCache', function($templateCache) {
+  'use strict';
+
+  $templateCache.put('boxAccordion.html',
+    "<div class=\"box-accordion\" ng-transclude>\n" +
+    "</div>"
+  );
+
+
+  $templateCache.put('boxAccordionBody.html',
+    "<div>\n" +
+    "<div class=\"box-accordion-triangle\" ng-show=\"isOpen\"></div>\n" +
+    "<div class=\"box-accordion-body\" ng-show=\"isOpen\">\n" +
+    "\t<div class=\"box-accordion-close\" ng-click=\"toggle()\"></div>\n" +
+    "\t<div class=\"box-accordion-body-inner\" ng-transclude></div>\n" +
+    "</div>\n" +
+    "</div>"
+  );
+
+
+  $templateCache.put('boxAccordionGroup.html',
+    "<div class=\"box-accordion-group\" ng-transclude>\n" +
+    "</div>"
+  );
+
+
+  $templateCache.put('boxAccordionHead.html',
+    "<div class=\"box-accordion-head\" ng-click=\"toggle()\" ng-transclude>\n" +
+    "</div>"
+  );
+
+}]);

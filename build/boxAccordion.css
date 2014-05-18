@@ -52,7 +52,7 @@
     height: 20px;
     margin: auto;
     position:relative;
-    background-image: url('../images/triangle.png');
+    background-image: url('triangle.png');
     z-index:1000
 }
 

@@ -8,7 +8,8 @@
 }
 
 .accordion-container {
-	margin: 20px;
+	margin: 10px;
+	width: 100%;
 }
 .demo-body h3{
 	font-family: 'Open Sans', sans-serif;
