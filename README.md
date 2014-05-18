@@ -1,4 +1,4 @@
-Angular UI Widgets
+Angular UI Widgets [![Build Status](https://travis-ci.org/Ema93sh/box-accordion.svg?branch=master)](https://travis-ci.org/Ema93sh/box-accordion)
 ==================
 
 ## Box Accordion ##
