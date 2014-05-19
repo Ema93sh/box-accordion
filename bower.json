@@ -23,7 +23,7 @@
     "package.json"
   ],
   "dependencies": {
-    "angularjs": "*",
+    "angular": "*",
     "angular-animate": "~1.2.14"
   },
   "devDependencies": {
