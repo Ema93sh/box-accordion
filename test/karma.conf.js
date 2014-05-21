@@ -18,6 +18,7 @@ module.exports = function(config) {
       '../bower_components/angular/angular.js',
       '../bower_components/angular-mocks/angular-mocks.js',
       '../src/js/boxAccordion.js',
+      '../src/partials/**/*.html',
       '*test.js'
     ],
 
@@ -31,9 +32,14 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-        '../src/js/*.js' : ['coverage']
+        '../src/js/*.js' : ['coverage'],
+        '../src/partials/**/*.html': ['ng-html2js']
     },
 
+    ngHtml2JsPreprocessor: {
+        stripPrefix: '.*/src/partials/',
+        moduleName: 'ui.boxaccordion'
+    },
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
