@@ -1,7 +1,7 @@
 /*global angular*/
 'use strict';
 
-angular.module('ui.boxaccordion', [])
+angular.module('ui.boxaccordion', ['duScroll'])
     .controller('BoxAccordionController', ['$scope', function ($scope) {
         $scope.groups = [];
 
@@ -60,7 +60,7 @@ angular.module('ui.boxaccordion', [])
 
     }])
 
-    .directive('boxAccordionGroup', function () {
+    .directive('boxAccordionGroup', function ($document) {
         return {
             restrict: 'E',
             require: '^boxAccordion',
@@ -76,7 +76,7 @@ angular.module('ui.boxaccordion', [])
                     if (value) {
                         accordionCtrl.closeOthers(scope);
                         element.css('height', '770px');
-                        $("body").animate({scrollTop: element[0].offsetTop}, "slow");
+                        $document.scrollTo( 0, element[0].offsetTop, 200 )
                     } else {
                         element.css('height', '250px');
                     }
